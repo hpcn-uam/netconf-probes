@@ -1,3 +1,3 @@
 # netconf-probes
 
-Poyecto de control remoto de sondas Ethernet utilizando el protocolo Netconf. El proyecto consiste en una itnerfaz desarollada en Django que realiza tareas de monitorización a través de la ejecución de RPCs en Netconf
+Poyecto de control remoto de sondas Ethernet utilizando el protocolo NETCONF. El proyecto consiste en una interfaz Web desarollada en Django que realiza tareas de monitorización a través de la ejecución de RPCs en Netconf
