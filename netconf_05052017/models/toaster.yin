@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:ietf:params:xml:ns:yang:yin:1" xmlns:toast="http://netconfcentral.org/ns/toaster" name="toaster">
+  <namespace uri="http://netconfcentral.org/ns/toaster"/>
+  <prefix value="toast"/>
+  <container name="toaster"/>
+  <rpc name="make-toast">
+    <description>
+      <text>Make some toast.
+The toastDone notification will be sent when 
+the toast is finished.
+An 'in-use' error will be returned if toast
+is already being made.
+A 'resource-denied' error will be returned 
+if the toaster service is disabled.</text>
+    </description>
+  </rpc>
+  <rpc name="make-ls">
+    <description>
+      <text>ls.</text>
+    </description>
+  </rpc>
+  <rpc name="iperf_s">
+    <description>
+      <text>Arranca un servidor de iperf</text>
+    </description>
+  </rpc>
+  <rpc name="iperf_c">
+    <description>
+      <text>Arranca cliente iperf</text>
+    </description>
+  </rpc>
+  <rpc name="iperf_stop">
+    <description>
+      <text>Detiene servidores iperf</text>
+    </description>
+  </rpc>
+  <rpc name="fprobe_start">
+    <description>
+      <text>Captura trafico pasivo con la ayuda de fprobe.</text>
+    </description>
+  </rpc>
+  <rpc name="fprobe_result">
+    <description>
+      <text>Obtiene el trafico capturado.</text>
+    </description>
+  </rpc>
+  <rpc name="ifconfig">
+    <description>
+      <text>ifconfig</text>
+    </description>
+  </rpc>
+  <rpc name="general_information">
+    <description>
+      <text>obtiene informacion general sonda.</text>
+    </description>
+  </rpc>
+  <rpc name="ping">
+    <description>
+      <text>Realiza el comando ping.</text>
+    </description>
+  </rpc>
+</module>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="config"
+        xmlns="urn:ietf:params:xml:ns:yang:yin:1"
+        xmlns:config="http://tail-f.com/ns/example/ping">
+  <namespace uri="http://tail-f.com/ns/example/ping"/>
+  <prefix value="config"/>
+  <import module="tailf-common">
+    <prefix value="tailf"/>
+  </import>
+  <rpc name="ping">
+    <tailf:exec>
+      <tailf:args/>
+      <tailf:wd/>
+    </tailf:exec>
+    <input>
+      <leaf name="count">
+        <type name="uint32"/>
+        <default value="3"/>
+      </leaf>
+      <leaf name="host">
+        <type name="string"/>
+        <default value="localhost"/>
+      </leaf>
+    </input>
+    <output>
+      <leaf name="ping-result">
+        <type name="string"/>
+      </leaf>
+    </output>
+  </rpc>
+</module>

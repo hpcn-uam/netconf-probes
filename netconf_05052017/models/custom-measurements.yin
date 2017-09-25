@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="custom-measurements"
+        xmlns="urn:ietf:params:xml:ns:yang:yin:1"
+        xmlns:sys="urn:ietf:params:xml:ns:yang:ietf-system"
+        xmlns:yang="urn:ietf:params:xml:ns:yang:ietf-yang-types"
+        xmlns:inet="urn:ietf:params:xml:ns:yang:ietf-inet-types"
+        xmlns:nacm="urn:ietf:params:xml:ns:yang:ietf-netconf-acm"
+        xmlns:ianatz="urn:ietf:params:xml:ns:yang:iana-timezones">
+  <namespace uri="urn:ietf:params:xml:ns:yang:ietf-system"/>
+  <prefix value="sys"/>
+  <import module="ietf-yang-types">
+    <prefix value="yang"/>
+  </import>
+  <import module="ietf-inet-types">
+    <prefix value="inet"/>
+  </import>
+  <import module="ietf-netconf-acm">
+    <prefix value="nacm"/>
+  </import>
+  <import module="iana-timezones">
+    <prefix value="ianatz"/>
+  </import>
+
+
+ <container name="measurements">
+    <description>
+      <text>Measurements.</text>
+    </description>
+    <leaf name="ping">
+      <type name="string">
+        <length value="0..255"/>
+      </type>
+      <description>
+        <text>Ping command.</text>
+      </description>
+    </leaf>
+</container>
+</module>

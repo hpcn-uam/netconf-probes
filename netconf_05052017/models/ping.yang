@@ -1,0 +1,29 @@
+module config {
+  namespace "http://tail-f.com/ns/example/ping";
+  prefix config;
+
+  import tailf-common {
+    prefix tailf;
+  }
+  rpc ping {
+    tailf:exec "./ping.sh" {
+      tailf:args "-c $(context)";
+      tailf:wd ".";
+    }
+    input {
+      leaf count {
+	type uint32;
+	default "3";
+      }
+      leaf host {
+	type string;
+	default "localhost";
+      }
+    } 
+    output {
+      leaf ping-result {
+	type string;
+      }
+    }
+  }
+}
