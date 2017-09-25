@@ -1,0 +1,3 @@
+<?php exec("/home/tito/script.sh"); ?>
+
+

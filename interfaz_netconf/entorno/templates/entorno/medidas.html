@@ -1,0 +1,217 @@
+{% load  staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>tfg</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="{%static 'entorno/css/style.css' %}" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <!--script type="text/javascript" src="js/modernizr-1.5.min.js"></script-->
+  <script type="text/javascript" src="{%static 'entorno/js/modernizr-1.5.min.js' %}"></script>
+ <script type="text/javascript" src="{%static 'entorno/js/jquery.js' %}"></script>
+  <script type="text/javascript" src="{%static 'entorno/js/jquery.easing-sooper.js' %}"></script>
+    <script type="text/javascript" src="{% static 'entorno/js/jquery.sooperfish.js'%}"></script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+  </script>
+
+<script type="text/javascript">
+function mostrar(){
+var elem = document.getElementById('oculto');
+if (elem.style.display == 'none') 
+	{elem.style.display = 'block';}
+else
+	{elem.style.display = 'none';}
+}
+</script>
+
+<script type="text/javascript">
+function mostrar1(){
+var elem = document.getElementById('oculto1');
+if (elem.style.display == 'none') 
+	{elem.style.display = 'block';}
+else
+	{elem.style.display = 'none';}
+}
+</script>
+
+</head>
+
+<body>
+  <div id="main">
+    <header>
+	<div style="clear:both">
+      		<div id="logo">
+			<h1><a href="http://www.uam.es/ss/Satellite/es/home/"><IMG SRC="{% static 'entorno/images/logo_uam.jpg'%}" ALT="UAM" WIDTH=187 HEIGHT=82></a></h1>
+		</div>
+
+		<div align="center "id="logo2">
+          		<!-- class="logo_colour", allows you to change the colour of the text -->
+			<h1><strong><font color="#09D4FF" size=5 ALIGN="center"><a href="{% url 'entorno:inicio' %}" style="text-decoration:none">Entorno para la gestión de sondas de red de bajo coste</a></h1></font></strong>
+         	</div>
+		
+		<div id="logo1"><h1><a href="http://www.uam.es/ss/Satellite/EscuelaPolitecnica/es/home.htm"><IMG SRC="{% static 'entorno/images/logo-eps1.png'%}" ALT="EPS" align="right"></a></h1>
+        		
+      		</div>
+	</div>
+      <nav>
+       <div id="menu_container">
+          <ul class="sf-menu" id="nav">
+            <li><a href="{% url 'entorno:inicio' %}">Inicio</a></li>
+	   <li><a href="{% url 'entorno:des' %}">Tipos de medidas</a></li>
+            <li><a href="{% url 'entorno:des' %}">Medidas activas</a>
+              <ul>
+               <li><a href="{% url 'entorno:filetransfer' %}">Descarga de fichero</a></li>
+                <li><a href="{% url 'entorno:packetpair' %}">Pares de paquetes</a></li>
+                <li><a href="{% url 'entorno:packettrain' %}">Tren de paquetes</a></li>
+               </ul>  
+            </li>
+            <li><a href="{% url 'entorno:des' %}">Medidas pasivas</a>
+              <ul>
+                <li><a href="{% url 'entorno:flujos' %}">Flujos</a></li>
+             	<li><a href="{% url 'entorno:mrtg' %}">MRTG</a></li>
+               </ul>  
+             </li>  
+               <li><a href="{% url 'entorno:medidas' %}">Tomar medidas</a>
+		<ul>
+               		<li><a href="{% url 'entorno:iperf_page' %}">Iperf</a></li>
+                	<li><a href="{% url 'entorno:ping_page' %}">Ping</a></li>
+                	<li><a href="{% url 'entorno:fprobe_page' %}">Fprobe</a></li>
+               </ul>  
+	       </li>  
+            </ul> 
+           	
+        </div>
+      </nav>
+    </header>
+    <div id="site_content">
+      <div id="sidebar_container">
+
+        <div class="sidebar">
+		<!--div style="text-align:left;width:350px;padding:0.5em 0;"> <h2><a style="text-decoration:none;" href="http://www.zeitverschiebung.net/es/city/3117735"><span style="color:gray;">Hora actual en</span><br />Madrid, Spain</a></h2> <iframe src="http://www.zeitverschiebung.net/clock-widget-iframe?language=es&timezone=Europe%2FMadrid" width="65%" height="120" frameborder="0" seamless></iframe> <small style="text-align:left;color:gray;"> <a href="http://www.zeitverschiebung.net/es/" style="text-align:left;color: gray;"></a></small> </div-->	
+	</div>
+        <div class="sidebar">
+          <h4>Links de interes.</h4>
+          <ul>
+            <li><a href="http://www.uam.es/ss/Satellite/es/home/">UAM</a></li>
+            <li><a href="http://www.uam.es/ss/Satellite/EscuelaPolitecnica/es/home.htm">Escuela Politécnica superior</a></li>
+      
+           
+          </ul>
+    	</div>
+	
+    
+      </div>
+      <div class="content">
+        <h1>Tomar medidas</h1>
+        <p align="justify">En este apartado de la web podremos obtener parámetros de calidad de servicio en tiempo real. Estos parámetros se obtienen en una red simulada con mininet.</p>
+        <p align="justify">Las medidas se obtiene a través del protocolo NETCONF. A continuación se da la posibilidad de ejecutar el programa ifconfig el cual nos proporciona información sobre la interfaz y la direccion MAC del equipo. También se da lo posibilidad de obtener información del procesador, sistema operativo y memoria de los host desplegados.
+      
+        
+      </div>
+    </div>
+
+ <div class="form_settings">
+ <input class="submit" type="button" value="Realizar ifconfig" onclick="mostrar()">
+  </div>
+
+ <div class="form_settings">
+ <input class="submit" type="button" value="Obtener propiedades" onclick="mostrar1()">
+  </div>     
+
+<div id=oculto style='display:none;'> 
+   <div class="form_settings">
+  <form  action="{% url 'entorno:ifconfig' %}" autocomplete="on"  method="post">
+            {% csrf_token %}
+
+	    
+            <h2>Realizar ifconfig.</h2>
+	      <p> 
+                <label for="ip_ifconfig" ><b> IP:</b></label>
+                <input id="ip_ifconfig" name="ip_ifconfig" type="text" placeholder="000.000.0.0"/>
+              </p>	 
+                           
+             <input type="submit" class="submit1" value="Ejecutar" onclick=""> 
+     </form>   
+   </div>
+</div>
+<div class="form_settings">
+ {% if out1 %}
+
+<p>{{ out1 }}</p>
+ {% else %}
+    
+   
+
+ 
+ {% endif %}
+</div>
+<div id=oculto1 style='display:none;'> 
+   <div class="form_settings">
+  <form  action="{% url 'entorno:properties' %}" autocomplete="on"  method="post">
+            {% csrf_token %}
+
+	    
+            <h2>Obtener propiedades.</h2>
+	      <p> 
+                <label for="ip_properties" ><b> IP:</b></label>
+                <input id="ip_properties" name="ip_properties" type="text" placeholder="000.000.0.0"/>
+              </p>	 
+                           
+             <input type="submit" class="submit1" value="Ejecutar" onclick=""> 
+     </form>   
+   </div>
+</div>
+<div class="form_settings">
+ {% if out2 %}
+
+<p>{{ out2 }}</p>
+ {% else %}
+     
+
+ 
+ {% endif %}
+</div>
+<div class="form_settings"> 
+ {% if out3 %}
+
+<p>{{ out3 }}</p>
+ {% else %}
+  
+ {% endif %}
+</div> 
+<div class="form_settings"> 
+ {% if out4 %}
+
+<p>{{ out4 }}</p>
+ {% else %}
+  
+ {% endif %}
+</div>     
+
+  
+   <footer>
+      <p>Copyright &copy; scenic_photo | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+    </footer>
+  </div>
+  <p>&nbsp;</p>
+  <!-- javascript at the bottom for fast page loading -->
+  <!--script type="text/javascript" src="{% static 'entorno/js/jquery.js'%}"></script-->
+  <script type="text/javascript" src="{% static 'entorno/js/jquery.easing-sooper.js'%}"></script>
+  <script type="text/javascript" src="{% static 'entorno/js/jquery.sooperfish.js'%}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+  </script>
+</body>
+</html>

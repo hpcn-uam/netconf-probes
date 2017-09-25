@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>tfg</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <!--link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style.css" /-->
+ {% load staticfiles %}
+<link href="{% static 'entorno/css/style.css' %}" rel="stylesheet"  type="text/css" >
+ 
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="{% static 'entorno/js/modernizr-1.5.min.js' %}"></script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">UAM <span class="logo_colour">Entorno para la gestion de sondas de red de bajo coste</span></a></h1>
+         
+        </div>
+      </div>
+      <nav>
+        <div id="menu_container">
+          <ul class="sf-menu" id="nav">
+            <li><a href="{% url 'entorno:inicio' %}">Home</a></li>
+            <li><a href="#">Medidas activas</a>
+              <ul>
+                <li><a href="{% url 'entorno:filetransfer' %}">File transfer</a></li>
+                <li><a href="{% url 'entorno:bulkdatatransfer' %}">Bulk data transfer</a></li>
+                <li><a href="{% url 'entorno:packetpair' %}">Packet pair</a></li>
+                <li><a href="{% url 'entorno:packettrain' %}">Packet train</a></li>
+               </ul>  
+            </li>
+            <li><a href="#">Medidas pasivas</a>
+              <ul>
+                <li><a href="{% url 'entorno:directlycapturedtraffic' %}">Directly captured traffic</a></li>
+                <li><a href="{% url 'entorno:preprocesseddata' %}">Preprocessed data</a></li>
+               </ul>  
+             </li>
+             <li><a href="{% url 'entorno:flujos' %}">Flujos</a></li>
+             <li><a href="{% url 'entorno:mrtg' %}">MRTG</a></li>
+              <li><a href="contact.php">Contact</a></li>
+            
+            </ul> 
+             
+        </div>
+      </nav>
+    </header>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <h3>Latest News</h3>
+          <h4>New Website Launched</h4>
+          <h5>January 1st, 2012</h5>
+          <p>2012 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+        </div>
+        <div class="sidebar">
+          <h3>Useful Links</h3>
+          <ul>
+            <li><a href="#">First Link</a></li>
+            <li><a href="#">Another Link</a></li>
+            <li><a href="#">And Another</a></li>
+            <li><a href="#">One More</a></li>
+            <li><a href="#">Last One</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <h1>A Page</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
+      </div>
+    </div>
+    
+    {% if p %}
+    	<p><h2>Preprocessed data:</h2><p>
+    	<table class=tabla >
+		<tr>
+		<td> Id</td>
+		<td> Capacity</td>
+		<td> Available Bandwidth</td>
+		<td> Throughput</td>
+		<td> One Way Delay</td>
+		<td> Round_trip_time</td>
+		<td> Jitter</td>
+		<td> Packet Loss</td>
+		
+        </tr>
+
+     	{% for question in p %}
+		<tr>
+		<td>{{question.id}}</td>
+		<td>{{question.capacity}}</td>
+		<td>{{question.available_bandwidth}}</td>
+		<td>{{question.throughput}}</td>
+		<td>{{question.one_way_delay}}</td>
+		<td>{{question.round_trip_time}}</td>
+		<td>{{question.jitter}}</td>
+		<td>{{question.packet_loss}}</td>
+       
+		</tr>
+
+    	{% endfor %}
+    	</table>
+        
+    {% else %}
+    <p>No polls are available.</p>
+    {% endif %}
+    
+    
+    <footer>
+      <p>Copyright &copy; scenic_photo | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+    </footer>
+  </div>
+  <p>&nbsp;</p>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="{% static 'entorno/js/jquery.js'%}"></script>
+  <script type="text/javascript" src="{% static 'entorno/js/jquery.easing-sooper.js'%}"></script>
+  <script type="text/javascript" src="{% static 'entorno/js/jquery.sooperfish.js'%}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+  </script>
+</body>
+</html>

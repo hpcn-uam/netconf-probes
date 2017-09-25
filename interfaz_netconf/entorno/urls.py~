@@ -1,0 +1,22 @@
+from django.conf.urls import patterns, url
+
+from entorno import views
+
+urlpatterns = patterns('',
+    # ex: /polls/
+    url(r'^$', views.index, name='index'),
+    url(r'^formini/$', views.formini, name='formini'),
+    url(r'^formflujos/$', views.formflujos, name='formflujos'),
+     url(r'^formreg/$', views.formreg, name='formreg'),
+    url(r'^inicio/$', views.inicio, name='inicio'),
+    url(r'^flujos/$', views.flujos, name='flujos'),
+    url(r'^mrtg/$', views.mrtg, name='mrtg'),
+    url(r'^sondas/$', views.sondas, name='sondas'),
+    url(r'^mrtg/resultMRTG.png$', views.plotMRTG),
+    url(r'^filetransfer/$', views.filetransfer, name='filetransfer'),
+    url(r'^packetpair/$', views.packetpair, name='packetpair'),
+    url(r'^packettrain/$', views.packettrain, name='packettrain'),
+    url(r'^des/$', views.des, name='des'),
+    
+      
+)

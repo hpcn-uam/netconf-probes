@@ -1,0 +1,115 @@
+{% load  staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>tfg</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="{%static 'entorno/css/style.css' %}" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <!--script type="text/javascript" src="js/modernizr-1.5.min.js"></script-->
+  <script type="text/javascript" src="{%static 'entorno/js/modernizr-1.5.min.js' %}"></script>
+ <script type="text/javascript" src="{%static 'entorno/js/jquery.js' %}"></script>
+  <script type="text/javascript" src="{%static 'entorno/js/jquery.easing-sooper.js' %}"></script>
+    <script type="text/javascript" src="{% static 'entorno/js/jquery.sooperfish.js'%}"></script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+  </script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+	<div style="clear:both">
+      		<div id="logo">
+			<h1><a href="http://www.uam.es/ss/Satellite/es/home/"><IMG SRC="{% static 'entorno/images/logo_uam.jpg'%}" ALT="UAM" WIDTH=187 HEIGHT=82></a></h1>
+		</div>
+
+		<div align="center "id="logo2">
+          		<!-- class="logo_colour", allows you to change the colour of the text -->
+			<h1><strong><font color="#09D4FF" size=5 ALIGN="center"><a href="{% url 'entorno:inicio' %}" style="text-decoration:none">Entorno para la gestión de sondas de red de bajo coste</a></h1></font></strong>
+         	</div>
+		
+		<div id="logo1"><h1><a href="http://www.uam.es/ss/Satellite/EscuelaPolitecnica/es/home.htm"><IMG SRC="{% static 'entorno/images/logo-eps1.png'%}" ALT="EPS" align="right"></a></h1>
+        		
+      		</div>
+	</div>
+      <nav>
+       <div id="menu_container">
+          <ul class="sf-menu" id="nav">
+            <li><a href="{% url 'entorno:inicio' %}">Inicio</a></li>
+	   <li><a href="{% url 'entorno:des' %}">Tipos de medidas</a></li>
+            <li><a href="{% url 'entorno:des' %}">Medidas activas</a>
+              <ul>
+               <li><a href="{% url 'entorno:filetransfer' %}">Descarga de fichero</a></li>
+                <li><a href="{% url 'entorno:packetpair' %}">Pares de paquetes</a></li>
+                <li><a href="{% url 'entorno:packettrain' %}">Tren de paquetes</a></li>
+               </ul>  
+            </li>
+            <li><a href="{% url 'entorno:des' %}">Medidas pasivas</a>
+              <ul>
+                <li><a href="{% url 'entorno:flujos' %}">Flujos</a></li>
+             	<li><a href="{% url 'entorno:mrtg' %}">MRTG</a></li>
+               </ul>  
+             </li>  
+               <li><a href="{% url 'entorno:medidas' %}">Tomar medidas</a>
+		<ul>
+               		<li><a href="{% url 'entorno:iperf_page' %}">Iperf</a></li>
+                	<li><a href="{% url 'entorno:ping_page' %}">Ping</a></li>
+                	<li><a href="{% url 'entorno:fprobe_page' %}">Fprobe</a></li>
+               </ul>  
+	       </li>  
+            </ul> 
+           	
+        </div>
+      </nav>
+    </header>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+	  <div style="text-align:left;width:350px;padding:0.5em 0;"> <h2><a style="text-decoration:none;" href="http://www.zeitverschiebung.net/es/city/3117735"><span style="color:gray;">Hora actual en</span><br />Madrid, Spain</a></h2> <iframe src="http://www.zeitverschiebung.net/clock-widget-iframe?language=es&timezone=Europe%2FMadrid" width="65%" height="120" frameborder="0" seamless></iframe> <small style="text-align:left;color:gray;"> <a href="http://www.zeitverschiebung.net/es/" style="text-align:left;color: gray;"></a></small>
+          </div>	
+	</div>
+        <div class="sidebar">
+          <h4>Links de interes.</h4>
+          <ul>
+            <li><a href="http://www.uam.es/ss/Satellite/es/home/">UAM</a></li>
+            <li><a href="http://www.uam.es/ss/Satellite/EscuelaPolitecnica/es/home.htm">Escuela Politécnica superior</a></li>
+           
+          </ul>
+	</div>
+	
+    </div>
+      
+      <div class="content">
+       
+       	<h1>Medidas activas</h1>
+        <p align="justify">Las medidas activas consisten en inyectar tráfico en la red para determinar la calidad del segmento de red observado. Se requiere de medidas activas para obtener parámetros como la capacidad del enlace, One-Way Delay(OWD) o paquetes perdidos. El mayor inconveniente de este método es que genera tráfico extra en la red. En nuestro caso generaremos medidas activas a tráves de tres métodos: <i>Transferencia de ficheros, pares de paquetes y tren de paquetes.</i></p>
+
+<h1>Medidas pasivas</h1>
+        <p align="justify">Las medidas pasivas consisten en colectar tráfico de la red para analizar su rendimiento y comportamiento. La principal ventaja de este método es que analiza la red de forma no intrusiva. La estimación precisa de parámetros de calidad de servicio utlizando medidas pasivas es un tanto complicado, devido a la variación de las condiciones del intervalo adquirido de la red. Utilizaremos dos enfoques de monotorizacion de tráfico:<i> Flujos, MRTG (Multi Router Traffic Grapher)</i>. </p>
+
+      </div>
+    </div>
+    <footer>
+      <p>Copyright &copy; scenic_photo | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+    </footer>
+  </div>
+  <p>&nbsp;</p>
+  <!-- javascript at the bottom for fast page loading -->
+
+  <!--script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script-->
+
+ 
+</body>
+</html>

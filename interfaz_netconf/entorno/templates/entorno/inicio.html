@@ -1,0 +1,119 @@
+{% load  staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>tfg</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="{%static 'entorno/css/style.css' %}" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <!--script type="text/javascript" src="js/modernizr-1.5.min.js"></script-->
+  <script type="text/javascript" src="{%static 'entorno/js/modernizr-1.5.min.js' %}"></script>
+ <script type="text/javascript" src="{%static 'entorno/js/jquery.js' %}"></script>
+  <script type="text/javascript" src="{%static 'entorno/js/jquery.easing-sooper.js' %}"></script>
+    <script type="text/javascript" src="{% static 'entorno/js/jquery.sooperfish.js'%}"></script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+  </script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+	<div style="clear:both">
+      		<div id="logo">
+			<h1><a href="http://www.uam.es/ss/Satellite/es/home/"><IMG SRC="{% static 'entorno/images/logo_uam.jpg'%}" ALT="UAM" WIDTH=187 HEIGHT=82></a></h1>
+		</div>
+
+		<div align="center "id="logo2">
+          		<!-- class="logo_colour", allows you to change the colour of the text -->
+			<h1><strong><font color="#09D4FF" size=5 ALIGN="center"><a href="{% url 'entorno:inicio' %}" style="text-decoration:none">Entorno para la gestión de sondas de red de bajo coste</a></h1></font></strong>
+         	</div>
+		
+		<div id="logo1"><h1><a href="http://www.uam.es/ss/Satellite/EscuelaPolitecnica/es/home.htm"><IMG SRC="{% static 'entorno/images/logo-eps1.png'%}" ALT="EPS" align="right"></a></h1>
+        		
+      		</div>
+	</div>
+      <nav>
+       <div id="menu_container">
+          <ul class="sf-menu" id="nav">
+            <li><a href="{% url 'entorno:inicio' %}">Inicio</a></li>
+	   <li><a href="{% url 'entorno:des' %}">Tipos de medidas</a></li>
+            <li><a href="{% url 'entorno:des' %}">Medidas activas</a>
+              <ul>
+               <li><a href="{% url 'entorno:filetransfer' %}">Descarga de fichero</a></li>
+                <li><a href="{% url 'entorno:packetpair' %}">Pares de paquetes</a></li>
+                <li><a href="{% url 'entorno:packettrain' %}">Tren de paquetes</a></li>
+               </ul>  
+            </li>
+            <li><a href="{% url 'entorno:des' %}">Medidas pasivas</a>
+              <ul>
+                <li><a href="{% url 'entorno:flujos' %}">Flujos</a></li>
+             	<li><a href="{% url 'entorno:mrtg' %}">MRTG</a></li>
+               </ul>  
+             </li>  
+               <li><a href="{% url 'entorno:medidas' %}">Tomar medidas</a>
+		<ul>
+               		<li><a href="{% url 'entorno:iperf_page' %}">Iperf</a></li>
+                	<li><a href="{% url 'entorno:ping_page' %}">Ping</a></li>
+                	<li><a href="{% url 'entorno:fprobe_page' %}">Fprobe</a></li>
+               </ul>  
+	       </li>  
+            </ul> 
+           	
+        </div>
+      </nav>
+    </header>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+	  <!--div style="text-align:left;width:350px;padding:0.5em 0;"> <h2><a style="text-decoration:none;" href="http://www.zeitverschiebung.net/es/city/3117735"><span style="color:gray;">Hora actual en</span><br />Madrid, Spain</a></h2> <iframe src="http://www.zeitverschiebung.net/clock-widget-iframe?language=es&timezone=Europe%2FMadrid" width="65%" height="120" frameborder="0" seamless></iframe> <small style="text-align:left;color:gray;"> <a href="http://www.zeitverschiebung.net/es/" style="text-align:left;color: gray;"></a></small>
+          </div-->	
+	</div>
+        <div class="sidebar">
+          <h4>Links de interes.</h4>
+          <ul>
+            <li><a href="http://www.uam.es/ss/Satellite/es/home/">UAM</a></li>
+            <li><a href="http://www.uam.es/ss/Satellite/EscuelaPolitecnica/es/home.htm">Escuela Politécnica superior</a></li>
+           
+          </ul>
+	</div>
+	
+    </div>
+      
+      <div class="content">
+       
+       	<h1>Introducción</h1>
+        <p align="justify">Este entorno web ha sido diseñado como motivo de un trabajo de fin de grado realizado en la Universidad Autónoma de Madrid en la facultad Escuela Politécnica Superior. El global del proyecto consiste en introducir en la red unas sondas Ethernet de bajo coste desarrollas en la propia universidad. Estas sondas recogen información de la red y la envían a un colector el cual se encarga de clasificar la información obtenida por las sondas y almacenarla en una base de datos. Por último tenemos  el “Front-end” que consiste en un entorno web. Este entono web se comunica con la base de datos para mostrar al usuario los parámetros recogidos, dándole la posibilidad de generar gráficos para su posterior estudio. </p>
+ <p><IMG SRC="{% static 'entorno/images/medi.png'%}" WIDTH=500 HEIGHT=284 ></p><p><small>Descripcion de la arquitectura de medidas utilizada</small></p>
+
+	<h1>Arquitectura de software</h1>
+        <p align="justify">Este entorno web ha sido desarrollado con Django, el cual trabaja de la siguiente manaera cuando intentamos acceder a un entrno web.<ol align="justify"><li value="1">Cuando un usuario accede al entorno web a través de un navegador este manda una solicitud.</li><li value="2">La URL escrita es gestionada por Django. Django enlaza cada URL con una vista. Una vista Django es una función Python que toma una petición web, la procesa y devuelve una respuesta web.</li><li value="3">Las vistas, generalmente, interactúan  con el modelo para obtener datos y poder generar la respuesta. Un modelo se define como el conjunto de datos y comportamientos que componen la información que maneja el sistema. Generalmente cada modelo se mapea a una tabla de una base de datos.</li><li value="4">Una vez obtenidos los datos, la vista puede hacer uso de  una plantilla que permita construir la respuesta web de acuerdo a una estructura y recursos concretos.</li><li value="5">La respuesta se envía al navegador y este la muestra del modo que corresponda.</li>
+</ol></p>
+
+<p><IMG SRC="{% static 'entorno/images/dcu.png'%}"WIDTH=500 HEIGHT=284  ></p><p><small>Descripcion de la arquitectura de software</small></p>
+
+      </div>
+    </div>
+    <footer>
+      <p>Copyright &copy; scenic_photo | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+    </footer>
+  </div>
+  <p>&nbsp;</p>
+  <!-- javascript at the bottom for fast page loading -->
+
+  <!--script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script-->
+
+ 
+</body>
+</html>

@@ -1,0 +1,226 @@
+from django.shortcuts import render
+from django.template import RequestContext, loader
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
+from django.shortcuts import render
+from django.template import RequestContext, loader
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
+from entorno.models import Usuario,Flujos,MRTG,Active_Measurement_file_transfer,Active_Measurement_packet_pair,Active_Measurement_packet_train
+import sys
+import sqlite3
+import os
+globvar=1
+
+def index(request):
+    #template = loader.get_template('entorno/prueb.html')
+    return render(request,'entorno/index.html',{})
+
+
+def formini(request):
+        usu=request.POST['username']
+        con=request.POST['password']
+        try:
+		autor=Usuario.objects.get(usuario=usu)
+		try:
+			password=Usuario.objects.get(contrasena=con)
+			return HttpResponseRedirect(reverse('entorno:inicio'))	
+			
+		except Usuario.DoesNotExist:
+			return HttpResponse("Error password")
+
+	except Usuario.DoesNotExist: 
+		return HttpResponse("Error usuario")
+
+def formreg(request):
+        usu=request.POST['usernamesignup']
+        email=request.POST['emailsignup']
+        con=request.POST['passwordsignup']
+        confirm=request.POST['passwordsignup_confirm']
+	       
+        if con==confirm:
+
+		try:
+		        #global globvar    # Needed to modify global copy of globvar
+    			#globvar = globvar+1						
+			conn = sqlite3.connect('/home/tito/tfg/db.sqlite3')
+			c = conn.cursor()
+			
+			# Insert a row of data
+			#c.execute("INSERT INTO entorno_usuario VALUES ('4',usu,email,con)")
+			c.execute("INSERT INTO entorno_usuario VALUES (?, ?, ?, ?);", ( globvar,usu, email, con))
+
+			# Save (commit) the changes
+			conn.commit()
+
+			# We can also close the connection if we are done with it.
+			# Just be sure any changes have been committed or they will be lost.
+			conn.close()
+			return HttpResponseRedirect(reverse('entorno:index'))
+	
+		except sqlite3.Error, e:
+    
+   			 print "Error %s:" % e.args[0]
+    			 sys.exit(1)	
+		#except:
+			#return HttpResponse("No se puede acceder a la base de datos")
+
+	else: 
+		return HttpResponse("Error al introducir la contrasena")
+
+def formflujos(request):
+	p=Flujos.objects.all()
+	x=Flujos.objects.all()
+        ip_origen_post=request.POST['ip_origen']
+	ip_destino_post=request.POST['ip_destino']
+ 	puerto_origen_post=request.POST['puerto_origen']
+ 	puerto_destino_post=request.POST['puerto_destino']
+	print(ip_origen_post,ip_destino_post,puerto_origen_post,puerto_destino_post)
+        select=request.POST['seleccion']
+    
+	if select=="1":
+		w=1
+        else:
+		w=2
+	
+        #if not ip_origen_post and not ip_destino_post and not puerto_origen_post and not puerto_destino_post:
+			#c=Flujos.objects.all()
+
+        #else   ip_origen_post or not ip_destino_post or not puerto_origen_post or not puerto_destino_post:
+			
+			#c=Flujos.objects.filter(ip_origen=ip_origen_post,ip_destino=ip_destino_post,puerto_origen=puerto_origen_post,puerto_destino=puerto_destino_post)
+		
+	if ip_origen_post:
+		p=p.filter(ip_origen=ip_origen_post)
+	if ip_destino_post:
+		p=p.filter(ip_destino=ip_destino_post)
+	if puerto_origen_post:
+		p=p.filter(puerto_origen=puerto_origen_post)
+	if puerto_destino_post:
+		p=p.filter(puerto_destino=puerto_destino_post)
+	
+        t=loader.get_template('entorno/flujos.html')
+	x=RequestContext(request,{'x':x,'p':p,'w':w})
+	return HttpResponse(t.render(x))
+
+              	
+	
+	
+
+def inicio(request):
+    #template = loader.get_template('entorno/prueb.html')
+    return render(request,'entorno/inicio.html',{})
+
+def des(request):
+    #template = loader.get_template('entorno/prueb.html')
+    return render(request,'entorno/des.html',{})
+
+def flujos(request):
+	
+	x=Flujos.objects.all()
+	t=loader.get_template('entorno/flujos.html')
+	c=RequestContext(request,{'x':x})
+	return HttpResponse(t.render(c))
+
+
+      
+def mrtg(request):
+	
+	p=MRTG.objects.all()
+	t=loader.get_template('entorno/mrtg.html')
+	c=RequestContext(request,{'p':p})
+	return HttpResponse(t.render(c))
+def sondas(request):
+	
+	t=loader.get_template('entorno/sondas.html')
+	c=RequestContext(request,{})
+	return HttpResponse(t.render(c))
+
+def plotMRTG(request):
+	print >>sys.stderr, 'Goodbye, cruel world!0'
+	import matplotlib
+	from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+	from matplotlib.figure import Figure
+	from matplotlib.dates import DateFormatter
+	
+	
+
+	
+	
+	fig = Figure()
+
+	ax=fig.add_subplot(1,1,1)
+	p=MRTG.objects.all()
+	print >>sys.stderr, 'Goodbye, cruel world!1'
+
+	
+	ts = [sample.contador_bytes for sample in p]
+	pkts = [sample.contador_paquetes for sample in p]
+
+	print >>sys.stderr,ts
+	print >>sys.stderr,pkts
+
+
+	print >>sys.stderr, 'Goodbye, cruel world!2'
+	
+
+	ax.plot(ts, pkts)
+	fig.patch.set_alpha(1)
+	print >>sys.stderr, 'Goodbye, cruel world3!'
+	#ax.set_xticks(ind + 0.5)
+	#ax.set_xticklabels(names)
+
+	ax.set_ylabel("Bytes")
+	ax.set_xlabel("Time")
+
+	#ax.set_xticklabels(names)
+
+	title = u"Dynamically Generated Results MRTG:"
+	ax.set_title(title)
+	ax.patch.set_alpha(1.0)
+	ax.patch.set_facecolor('none')
+
+	#ax.grid(True)
+	canvas = FigureCanvas(fig)
+	response = HttpResponse(content_type='image/png')
+
+	canvas.print_png(response)
+	return response
+	#return HttpResponse(t.render(c))
+
+
+def filetransfer(request):
+	
+	p=Active_Measurement_file_transfer.objects.all()
+	t=loader.get_template('entorno/filetransfer.html')
+	c=RequestContext(request,{'p':p})
+	return HttpResponse(t.render(c))
+
+
+
+def packetpair(request):
+	
+	p=Active_Measurement_packet_pair.objects.all()
+	t=loader.get_template('entorno/packetpair.html')
+	c=RequestContext(request,{'p':p})
+	return HttpResponse(t.render(c))
+
+def packettrain(request):
+	
+	p=Active_Measurement_packet_train.objects.all()
+	t=loader.get_template('entorno/packettrain.html')
+	c=RequestContext(request,{'p':p})
+	return HttpResponse(t.render(c))
+
+
+def execute(request):
+	
+	p=Active_Measurement_packet_train.objects.all()
+	t=loader.get_template('entorno/filetransfer.html')
+	os.system("/home/tito/script.sh")
+	c=RequestContext(request,{'p':p})
+	return HttpResponse(t.render(c))
+	 
+
+
+      

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>tfg</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <!--link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style.css" /-->
+ {% load staticfiles %}
+<link href="{% static 'entorno/css/style.css' %}" rel="stylesheet"  type="text/css" >
+ 
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="{% static 'entorno/js/modernizr-1.5.min.js' %}"></script>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+	<div style="clear:both">
+      		<div id="logo">
+			<h1><IMG SRC="{% static 'entorno/images/logo_uam.jpg'%}" ALT="UAM" WIDTH=187 HEIGHT=82></h1>
+		</div>
+
+		<div align="center "id="logo2">
+          		<!-- class="logo_colour", allows you to change the colour of the text -->
+			<h1><strong><font color="#09D4FF" size=5 ALIGN="center">Entorno para la gestion de sondas de red de bajo coste</h1></font></strong>
+         	</div>
+		
+		<div id="logo1"><h1><IMG SRC="{% static 'entorno/images/logo-eps1.png'%}" ALT="EPS" align="right"  ></h1>
+        		
+      		</div>
+	</div>
+      <nav>
+       <div id="menu_container">
+          <ul class="sf-menu" id="nav">
+            <li><a href="{% url 'entorno:inicio' %}">Inicio</a></li>
+            <li><a href="#">Medidas activas</a>
+              <ul>
+                <li><a href="{% url 'entorno:filetransfer' %}">File transfer</a></li>
+                <li><a href="{% url 'entorno:packetpair' %}">Packet pair</a></li>
+                <li><a href="{% url 'entorno:packettrain' %}">Packet train</a></li>
+               </ul>  
+            </li>
+            <li><a href="#">Medidas pasivas</a>
+              <ul>
+                <li><a href="{% url 'entorno:flujos' %}">Flujos</a></li>
+             	<li><a href="{% url 'entorno:mrtg' %}">MRTG</a></li>
+               </ul>  
+             </li>
+             
+             <li><a href="{% url 'entorno:sondas' %}">Sondas</a></li>
+            
+            
+            </ul> 
+             
+        </div>
+      </nav>
+    </header>
+    <div id="site_content">
+      <div id="sidebar_container">
+
+        <div class="sidebar">
+		<div style="text-align:left;width:350px;padding:0.5em 0;"> <h2><a style="text-decoration:none;" href="http://www.zeitverschiebung.net/es/city/3117735"><span style="color:gray;">Hora actual en</span><br />Madrid, Spain</a></h2> <iframe src="http://www.zeitverschiebung.net/clock-widget-iframe?language=es&timezone=Europe%2FMadrid" width="63%" height="120" frameborder="0" seamless></iframe> <small style="text-align:left;color:gray;"> <a href="http://www.zeitverschiebung.net/es/" style="text-align:left;color: gray;"></a></small> </div>	
+	</div>
+        <div class="sidebar">
+          <h4>Links de interes.</h4>
+          <ul>
+            <li><a href="http://www.uam.es/ss/Satellite/es/home/">UAM</a></li>
+            <li><a href="http://www.uam.es/ss/Satellite/EscuelaPolitecnica/es/home.htm">Escuela Politecnica superior</a></li>
+           
+          </ul>
+	</div>
+	
+      
+      </div>
+      <div class="content">
+        <h1>A Page</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
+
+      </div>
+  
+    </div>
+
+  
+
+    	<p><h2>Sondas:</h2><p>
+
+<p><iframe style="border: 1px solid #888; background-color: white;" src="http://dracula.ameisenbar.de/simple.html" width="100%" height="360"></iframe></p>
+
+ 
+    <footer>
+      <p>Copyright &copy; scenic_photo | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+    </footer>
+  </div>
+  <p>&nbsp;</p>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="{% static 'entorno/js/jquery.js'%}"></script>
+  <script type="text/javascript" src="{% static 'entorno/js/jquery.easing-sooper.js'%}"></script>
+  <script type="text/javascript" src="{% static 'entorno/js/jquery.sooperfish.js'%}"></script>
+
+    <script type="text/javascript" src="{% static 'entorno/js/raphael-min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'entorno/js/dracula_graffle.js'%}"></script>
+   
+    <script type="text/javascript" src="{% static 'entorno/js/dracula_graph.js'%}"></script>
+    <script type="text/javascript" src="{% static 'entorno/js/example.js'%}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+    });
+  </script>
+</body>
+</html>
